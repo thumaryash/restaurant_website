@@ -23,8 +23,6 @@ const addEventOnElements = function (elements, eventType, callback) {
   }
 }
 
-
-
 /**
  * NAVBAR
  */
@@ -40,7 +38,6 @@ const toggleNavbar = function () {
 }
 
 addEventOnElements(navTogglers, "click", toggleNavbar);
-
 
 
 /**
