@@ -1,139 +1,139 @@
-// 'use strict';
-// /**
-//  * PRELOAD
-//  * 
-//  * loading will be end after document is loaded
-//  */
+'use strict';
+/**
+ * PRELOAD
+ * 
+ * loading will be end after document is loaded
+ */
 
-// const preloader = document.querySelector("[data-preaload]");
+const preloader = document.querySelector("[data-preaload]");
 
-// window.addEventListener("load", function () {
-//   preloader.classList.add("loaded");
-//   document.body.classList.add("loaded");
-// });
-
-
-// /**
-//  * add event listener on multiple elements
-//  */
-
-// const addEventOnElements = function (elements, eventType, callback) {
-//   for (let i = 0, len = elements.length; i < len; i++) {
-//     elements[i].addEventListener(eventType, callback);
-//   }
-// }
+window.addEventListener("load", function () {
+  preloader.classList.add("loaded");
+  document.body.classList.add("loaded");
+});
 
 
+/**
+ * add event listener on multiple elements
+ */
 
-// /**
-//  * NAVBAR
-//  */
-
-// const navbar = document.querySelector("[data-navbar]");
-// const navTogglers = document.querySelectorAll("[data-nav-toggler]");
-// const overlay = document.querySelector("[data-overlay]");
-
-// const toggleNavbar = function () {
-//   navbar.classList.toggle("active");
-//   overlay.classList.toggle("active");
-//   document.body.classList.toggle("nav-active");
-// }
-
-// addEventOnElements(navTogglers, "click", toggleNavbar);
+const addEventOnElements = function (elements, eventType, callback) {
+  for (let i = 0, len = elements.length; i < len; i++) {
+    elements[i].addEventListener(eventType, callback);
+  }
+}
 
 
 
-// /**
-//  * HEADER & BACK TOP BTN
-//  */
+/**
+ * NAVBAR
+ */
 
-// const header = document.querySelector("[data-header]");
-// const backTopBtn = document.querySelector("[data-back-top-btn]");
+const navbar = document.querySelector("[data-navbar]");
+const navTogglers = document.querySelectorAll("[data-nav-toggler]");
+const overlay = document.querySelector("[data-overlay]");
 
-// let lastScrollPos = 0;
+const toggleNavbar = function () {
+  navbar.classList.toggle("active");
+  overlay.classList.toggle("active");
+  document.body.classList.toggle("nav-active");
+}
 
-// const hideHeader = function () {
-//   const isScrollBottom = lastScrollPos < window.scrollY;
-//   if (isScrollBottom) {
-//     header.classList.add("hide");
-//   } else {
-//     header.classList.remove("hide");
-//   }
-
-//   lastScrollPos = window.scrollY;
-// }
-
-// window.addEventListener("scroll", function () {
-//   if (window.scrollY >= 50) {
-//     header.classList.add("active");
-//     backTopBtn.classList.add("active");
-//     hideHeader();
-//   } else {
-//     header.classList.remove("active");
-//     backTopBtn.classList.remove("active");
-//   }
-// });
+addEventOnElements(navTogglers, "click", toggleNavbar);
 
 
 
-// /**
-//  * HERO SLIDER
-//  */
+/**
+ * HEADER & BACK TOP BTN
+ */
 
-// const heroSlider = document.querySelector("[data-hero-slider]");
-// const heroSliderItems = document.querySelectorAll("[data-hero-slider-item]");
-// const heroSliderPrevBtn = document.querySelector("[data-prev-btn]");
-// const heroSliderNextBtn = document.querySelector("[data-next-btn]");
+const header = document.querySelector("[data-header]");
+const backTopBtn = document.querySelector("[data-back-top-btn]");
 
-// let currentSlidePos = 0;
-// let lastActiveSliderItem = heroSliderItems[0];
+let lastScrollPos = 0;
 
-// const updateSliderPos = function () {
-//   lastActiveSliderItem.classList.remove("active");
-//   heroSliderItems[currentSlidePos].classList.add("active");
-//   lastActiveSliderItem = heroSliderItems[currentSlidePos];
-// }
+const hideHeader = function () {
+  const isScrollBottom = lastScrollPos < window.scrollY;
+  if (isScrollBottom) {
+    header.classList.add("hide");
+  } else {
+    header.classList.remove("hide");
+  }
 
-// const slideNext = function () {
-//   if (currentSlidePos >= heroSliderItems.length - 1) {
-//     currentSlidePos = 0;
-//   } else {
-//     currentSlidePos++;
-//   }
+  lastScrollPos = window.scrollY;
+}
 
-//   updateSliderPos();
-// }
+window.addEventListener("scroll", function () {
+  if (window.scrollY >= 50) {
+    header.classList.add("active");
+    backTopBtn.classList.add("active");
+    hideHeader();
+  } else {
+    header.classList.remove("active");
+    backTopBtn.classList.remove("active");
+  }
+});
 
-// heroSliderNextBtn.addEventListener("click", slideNext);
 
-// const slidePrev = function () {
-//   if (currentSlidePos <= 0) {
-//     currentSlidePos = heroSliderItems.length - 1;
-//   } else {
-//     currentSlidePos--;
-//   }
 
-//   updateSliderPos();
-// }
+/**
+ * HERO SLIDER
+ */
 
-// heroSliderPrevBtn.addEventListener("click", slidePrev);
+const heroSlider = document.querySelector("[data-hero-slider]");
+const heroSliderItems = document.querySelectorAll("[data-hero-slider-item]");
+const heroSliderPrevBtn = document.querySelector("[data-prev-btn]");
+const heroSliderNextBtn = document.querySelector("[data-next-btn]");
 
-// /**
-//  * auto slide
-//  */
+let currentSlidePos = 0;
+let lastActiveSliderItem = heroSliderItems[0];
 
-// let autoSlideInterval;
+const updateSliderPos = function () {
+  lastActiveSliderItem.classList.remove("active");
+  heroSliderItems[currentSlidePos].classList.add("active");
+  lastActiveSliderItem = heroSliderItems[currentSlidePos];
+}
 
-// const autoSlide = function () {
-//   autoSlideInterval = setInterval(function () {
-//     slideNext();
-//   }, 7000);
-// }
+const slideNext = function () {
+  if (currentSlidePos >= heroSliderItems.length - 1) {
+    currentSlidePos = 0;
+  } else {
+    currentSlidePos++;
+  }
 
-// addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], "mouseover", function () {
-//   clearInterval(autoSlideInterval);
-// });
+  updateSliderPos();
+}
 
-// addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], "mouseout", autoSlide);
+heroSliderNextBtn.addEventListener("click", slideNext);
 
-// window.addEventListener("load", autoSlide);
+const slidePrev = function () {
+  if (currentSlidePos <= 0) {
+    currentSlidePos = heroSliderItems.length - 1;
+  } else {
+    currentSlidePos--;
+  }
+
+  updateSliderPos();
+}
+
+heroSliderPrevBtn.addEventListener("click", slidePrev);
+
+/**
+ * auto slide
+ */
+
+let autoSlideInterval;
+
+const autoSlide = function () {
+  autoSlideInterval = setInterval(function () {
+    slideNext();
+  }, 7000);
+}
+
+addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], "mouseover", function () {
+  clearInterval(autoSlideInterval);
+});
+
+addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], "mouseout", autoSlide);
+
+window.addEventListener("load", autoSlide);
